@@ -133,6 +133,8 @@ const translations = {
     dashboard: {
       creativeWorkspace: 'Creative workspace',
       yourDashboard: 'Your design studio dashboard',
+      welcomeUser: 'Welcome back, {name} 👋',
+      profileCardTitle: 'Designer & Artist Profile',
       dashboardDescription: 'Keep your ideas, palettes and projects aligned in one polished space built for focused creative work.',
       todaysFocus: "Today's focus",
       todaysFocusText: 'Refine one concept and ship one project',
@@ -365,6 +367,8 @@ const translations = {
     dashboard: {
       creativeWorkspace: 'فضای کاری خلاقانه',
       yourDashboard: 'داشبورد استودیوی طراحی شما',
+      welcomeUser: 'خوش آمدید، {name} 👋',
+      profileCardTitle: 'پروفایل طراح و هنرمند',
       dashboardDescription: 'ایده‌ها، پالت‌ها و پروژه‌های شما را در یک فضای حرفه‌ای و منظم نگه می‌دارد.',
       todaysFocus: 'تمرکز امروز',
       todaysFocusText: 'یک مفهوم را اصلاح کنید و یک پروژه را تحویل دهید',

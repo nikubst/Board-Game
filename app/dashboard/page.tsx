@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useAuth } from '@/hooks/useAuth';
 import { useProjects } from '@/hooks/useProjects';
 import { useIdeas } from '@/hooks/useIdeas';
 import { usePalettes } from '@/hooks/usePalettes';
@@ -11,28 +12,49 @@ import { Button } from '@/components/ui/Button';
 import { ProjectList } from '@/components/projects/ProjectCard';
 
 export default function DashboardPage() {
-  const { t } = useTranslations();
-  const { projects, loading: projectsLoading, getCount: getProjectCount } = useProjects();
-  const { ideas, loading: ideasLoading, getCount: getIdeaCount } = useIdeas();
-  const { palettes, loading: palettesLoading, getCount: getPaletteCount } = usePalettes();
+  const { user } = useAuth();
+  const { t, isRtl } = useTranslations();
+  const { projects, loading: projectsLoading } = useProjects();
+  const { ideas } = useIdeas();
+  const { palettes } = usePalettes();
+
+  const userName = user?.email
+    ? user.email.split('@')[0]
+    : isRtl
+    ? 'نیکو باستانی'
+    : 'Nikoo Bastani';
+
+  const welcomeText = t('dashboard', 'welcomeUser').replace('{name}', userName);
 
   return (
     <div className="space-y-8">
-      {/* Welcome Section */}
-      <div className="animate-fade-in rounded-[2rem] bg-gradient-to-br from-slate-950 via-slate-800 to-cyan-700 p-8 text-white shadow-xl">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      {/* Personalized User Welcome Banner */}
+      <div className="animate-fade-in rounded-[2rem] bg-gradient-to-br from-slate-950 via-slate-800 to-cyan-700 p-8 text-white shadow-xl relative overflow-hidden">
+        <div className="absolute right-0 top-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-cyan-500/10 blur-3xl" />
+        
+        <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-2xl">
-            <p className="text-sm uppercase tracking-[0.35em] text-cyan-200">{t('dashboard', 'creativeWorkspace')}</p>
-            <h1 className="mt-3 text-3xl font-bold sm:text-4xl">
-              {t('dashboard', 'yourDashboard')}
+            <div className="inline-flex items-center gap-3 mb-3 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs text-cyan-200 font-medium backdrop-blur-sm">
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+              <span>{t('dashboard', 'profileCardTitle')}</span>
+            </div>
+            
+            <h1 className="text-3xl font-bold sm:text-4xl leading-tight">
+              {welcomeText}
             </h1>
-            <p className="mt-3 text-slate-200">
+            <p className="mt-3 text-slate-200 text-base leading-relaxed">
               {t('dashboard', 'dashboardDescription')}
             </p>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 backdrop-blur">
-            <p className="text-sm text-cyan-100">{t('dashboard', 'todaysFocus')}</p>
-            <p className="mt-1 font-semibold">{t('dashboard', 'todaysFocusText')}</p>
+
+          <div className="flex items-center gap-4 rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-cyan-400 to-sky-500 flex items-center justify-center font-bold text-white text-xl shadow-lg">
+              {userName.charAt(0).toUpperCase()}
+            </div>
+            <div>
+              <p className="font-semibold text-white text-sm">{userName}</p>
+              <p className="text-xs text-cyan-200 mt-0.5">{user?.email || 'nikoo@nikoo-art-studio.com'}</p>
+            </div>
           </div>
         </div>
       </div>
