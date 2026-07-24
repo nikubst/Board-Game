@@ -71,12 +71,13 @@ nikoo-art-studio/
 
 ## 🎨 Features
 
+- **Bilingual Internationalization (LTR & RTL)**: Instant real-time toggle between English (LTR) and Farsi (RTL) across all components, sidebars, headers, and pages
+- **Supabase Authentication**: Integrated AuthProvider context for email/password authentication with session persistence
+- **Personalized Dashboard**: User-customized welcome section with profile initial badge and personalized workspace overview
 - **Idea Generator**: Transform text prompts into detailed design concepts
 - **Project Management**: Create, edit, and organize creative projects
 - **Color Palette Tool**: Create, save, and organize beautiful color combinations
 - **Inspiration Gallery**: Browse curated design inspiration
-- **Authentication**: Email/password login with protected routes
-- **Dark Mode**: Modern dark theme by default
 
 ## 🛠️ Tech Stack
 
