@@ -37,18 +37,23 @@ export const generatePalette = async (): Promise<{ name: string; colors: string[
 };
 
 export const getPalettes = async (userId: string): Promise<Palette[]> => {
-  const { data, error } = await supabase
-    .from(TABLE_NAME)
-    .select('*')
-    .eq('user_id', userId)
-    .order('created_at', { ascending: false });
+  try {
+    const { data, error } = await supabase
+      .from(TABLE_NAME)
+      .select('*')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false });
 
-  if (error) {
-    console.error('Error fetching palettes:', error);
-    throw error;
+    if (error) {
+      console.warn('Palettes table not ready or error:', error.message);
+      return [];
+    }
+
+    return data || [];
+  } catch (err) {
+    console.warn('Error fetching palettes:', err);
+    return [];
   }
-
-  return data || [];
 };
 
 export const getPaletteById = async (id: string): Promise<Palette | null> => {

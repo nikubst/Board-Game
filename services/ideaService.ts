@@ -42,18 +42,23 @@ export const generateIdea = async (prompt: string): Promise<GeneratedIdea> => {
 };
 
 export const getIdeas = async (userId: string): Promise<Idea[]> => {
-  const { data, error } = await supabase
-    .from(TABLE_NAME)
-    .select('*')
-    .eq('user_id', userId)
-    .order('created_at', { ascending: false });
+  try {
+    const { data, error } = await supabase
+      .from(TABLE_NAME)
+      .select('*')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false });
 
-  if (error) {
-    console.error('Error fetching ideas:', error);
-    throw error;
+    if (error) {
+      console.warn('Ideas table not ready or error:', error.message);
+      return [];
+    }
+
+    return data || [];
+  } catch (err) {
+    console.warn('Error fetching ideas:', err);
+    return [];
   }
-
-  return data || [];
 };
 
 export const getIdeaById = async (id: string): Promise<Idea | null> => {

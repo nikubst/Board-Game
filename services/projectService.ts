@@ -4,18 +4,23 @@ import { Project, ProjectFormData, ProjectStatus } from '@/types';
 const TABLE_NAME = 'projects';
 
 export const getProjects = async (userId: string): Promise<Project[]> => {
-  const { data, error } = await supabase
-    .from(TABLE_NAME)
-    .select('*')
-    .eq('user_id', userId)
-    .order('created_at', { ascending: false });
+  try {
+    const { data, error } = await supabase
+      .from(TABLE_NAME)
+      .select('*')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false });
 
-  if (error) {
-    console.error('Error fetching projects:', error);
-    throw error;
+    if (error) {
+      console.warn('Projects table not ready or error:', error.message);
+      return [];
+    }
+
+    return data || [];
+  } catch (err) {
+    console.warn('Error fetching projects:', err);
+    return [];
   }
-
-  return data || [];
 };
 
 export const getProjectById = async (id: string): Promise<Project | null> => {
