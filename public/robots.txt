@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Replace with your production domain before submitting to Google Search Console
+Sitemap: https://your-domain.com/sitemap.xml
+Host: https://your-domain.com

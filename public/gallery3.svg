@@ -1,0 +1,15 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="paintGrad3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="24" fill="url(#paintGrad3)" />
+  <g>
+    <path d="M120 520c160-220 380-240 640-120" stroke="#f59e0b" stroke-width="110" stroke-linecap="round" opacity="0.92" />
+    <path d="M320 220c180-60 360-40 480 40" stroke="#ef4444" stroke-width="90" stroke-linecap="round" opacity="0.9" />
+    <ellipse cx="980" cy="540" rx="120" ry="80" fill="#ffffff" opacity="0.85" />
+  </g>
+  <text x="48" y="760" font-family="Inter, sans-serif" font-size="24" fill="#40210f" opacity="0.9">Golden Passage — Bold Brush</text>
+</svg>
