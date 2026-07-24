@@ -59,9 +59,12 @@ export default function RegisterPage() {
     }
 
     try {
-      await register(formData.email, formData.password);
-      setSuccess(t('auth', 'registrationSuccess'));
-      // User will be redirected by the useEffect above
+      const res = await register(formData.email, formData.password);
+      if (res?.requiresConfirmation) {
+        setSuccess('ثبت‌نام با موفقیت انجام شد! لینک تایید به ایمیل شما ارسال گردید. لطفاً ایمیل خود را بررسی کنید.');
+      } else {
+        setSuccess(t('auth', 'registrationSuccess'));
+      }
     } catch (err: any) {
       setError(err.message || t('auth', 'registrationFailed'));
     } finally {
