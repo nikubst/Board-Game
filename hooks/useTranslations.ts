@@ -1,25 +1,19 @@
 'use client';
 
-import { useMemo } from 'react';
-import { useLanguage } from './useLanguage';
-import translations, { t, getTranslations, TranslationKeys } from '@/lib/translations';
+import { useContext } from 'react';
+import { LanguageContext } from '@/components/layout/LanguageProvider';
 
 export function useTranslations() {
-  const { language } = useLanguage();
-  
-  const translate = useMemo(() => {
-    return (namespace: TranslationKeys, key: string): string => {
-      return t(language, namespace, key);
-    };
-  }, [language]);
-
-  const getAllTranslations = useMemo(() => {
-    return getTranslations(language);
-  }, [language]);
-
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error('useTranslations must be used within a LanguageProvider');
+  }
   return {
-    t: translate,
-    translations: getAllTranslations,
-    language,
+    t: context.t,
+    translations: context.translations,
+    language: context.language,
+    isRtl: context.isRtl,
+    isLtr: context.isLtr,
   };
 }
+

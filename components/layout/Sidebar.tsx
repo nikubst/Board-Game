@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from '@/hooks/useTranslations';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
 
 interface SidebarProps {
@@ -11,7 +12,7 @@ interface SidebarProps {
 }
 
 interface NavItem {
-  label: string;
+  labelKey: string;
   href: string;
   icon: React.ReactNode;
   badge?: string | number;
@@ -19,10 +20,11 @@ interface NavItem {
 
 export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
   const pathname = usePathname();
+  const { t, isRtl } = useTranslations();
 
   const navItems: NavItem[] = [
     {
-      label: 'داشبورد | Dashboard',
+      labelKey: 'dashboard',
       href: '/dashboard',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,7 +33,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
       ),
     },
     {
-      label: 'پروژه‌ها | Projects',
+      labelKey: 'projects',
       href: '/dashboard/projects',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -40,7 +42,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
       ),
     },
     {
-      label: 'ایده‌ها | Ideas',
+      labelKey: 'ideas',
       href: '/dashboard/ideas',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -49,7 +51,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
       ),
     },
     {
-      label: 'پالت‌ها | Palettes',
+      labelKey: 'palettes',
       href: '/dashboard/palettes',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,7 +60,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
       ),
     },
     {
-      label: 'الهامات | Inspirations',
+      labelKey: 'inspirations',
       href: '/dashboard/inspirations',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -71,6 +73,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
   const isActive = (href: string) => {
     return pathname === href || pathname?.startsWith(`${href}/`);
   };
+
+  const sidePosClass = isRtl
+    ? 'right-0 border-l border-slate-200'
+    : 'left-0 border-r border-slate-200';
+
+  const translateTransformClass = isOpen
+    ? 'translate-x-0'
+    : isRtl
+    ? 'translate-x-full'
+    : '-translate-x-full';
 
   return (
     <>
@@ -85,19 +97,17 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 right-0 h-full bg-white/95 backdrop-blur-2xl border-l border-slate-200 z-50 transform transition-transform duration-400 ease-in-out md:translate-x-0 ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`fixed top-0 ${sidePosClass} h-full bg-white/95 backdrop-blur-2xl z-50 transform transition-transform duration-400 ease-in-out md:translate-x-0 ${translateTransformClass}`}
         style={{ width: '250px' }}
       >
         {/* Sidebar header */}
         <div className="h-16 flex items-center justify-between px-5 border-b border-slate-200">
           <Link href="/dashboard" className="flex items-center gap-3">
             <div className="p-3 rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-700 shadow-cyan-500/25">
-              <span className="text-lg font-bold text-slate-900">N</span>
+              <span className="text-lg font-bold text-white">N</span>
             </div>
-            <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-600">
-              NIKOO
+            <span className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-cyan-700">
+              {t('common', 'studioName')}
             </span>
           </Link>
           {/* Close button for mobile */}
@@ -114,32 +124,33 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
         {/* Navigation */}
         <nav className="flex flex-col h-[calc(100%-4rem)] p-5">
           <div className="flex flex-col gap-2">
-            <div className="px-3 py-2">
+            <div className="px-3 py-2 flex justify-center">
               <LanguageSwitcher />
             </div>
             {navItems.map((item) => {
               const active = isActive(item.href);
+              const label = t('sidebar', item.labelKey);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   className={`flex items-center gap-4 px-5 py-3.5 rounded-2xl transition-all duration-300 ${
                     active
-                      ? 'bg-gradient-to-r from-cyan-500 to-cyan-700 text-slate-900 shadow-cyan-500/25'
+                      ? 'bg-gradient-to-r from-cyan-500 to-cyan-700 text-white shadow-cyan-500/25 shadow-md'
                       : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                   onClick={onClose}
                 >
-                  <span className={`transition-colors ${active ? 'text-slate-900' : 'text-slate-700'}`}>
+                  <span className={`transition-colors ${active ? 'text-white' : 'text-slate-700'}`}>
                     {item.icon}
                   </span>
-                  <span className="flex-1 font-medium">{item.label}</span>
+                  <span className="flex-1 font-medium">{label}</span>
                   {item.badge && (
                     <span
                       className={`px-3 py-1.5 text-xs rounded-xl ${
                         active
-                          ? 'bg-slate-900/20 text-slate-900'
-                          : 'bg-slate-700/80 text-slate-200/70'
+                          ? 'bg-white/20 text-white'
+                          : 'bg-slate-200 text-slate-700'
                       }`}
                     >
                       {item.badge}
@@ -152,9 +163,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen = true, onClose }) => {
 
           {/* Footer */}
           <div className="mt-auto pt-5 border-t border-slate-200">
-            <div className="px-5 py-3.5 rounded-2xl bg-white shadow-sm text-slate-600 text-xs text-center border border-slate-200">
-              <p className="text-slate-900">NIKOO Art Studio</p>
-              <p className="text-slate-500 mt-0.5">Creative Workspace</p>
+            <div className="px-5 py-3.5 rounded-2xl bg-slate-50 shadow-sm text-slate-600 text-xs text-center border border-slate-200">
+              <p className="font-bold text-slate-900">{t('sidebar', 'studioName')}</p>
+              <p className="text-slate-500 mt-0.5">{t('sidebar', 'workspace')}</p>
             </div>
           </div>
         </nav>
@@ -168,9 +179,12 @@ export const SidebarToggle: React.FC<{
   isOpen: boolean;
   onToggle: () => void;
 }> = ({ isOpen, onToggle }) => {
+  const { isRtl } = useTranslations();
+  const posClass = isRtl ? 'right-4' : 'left-4';
+
   return (
     <button
-      className="md:hidden fixed top-4 left-4 z-30 p-3 rounded-2xl bg-white/90 hover:bg-slate-100 transition-colors backdrop-blur-sm"
+      className={`md:hidden fixed top-4 ${posClass} z-30 p-3 rounded-2xl bg-white/90 hover:bg-slate-100 transition-colors backdrop-blur-sm shadow-md`}
       onClick={onToggle}
     >
       <svg className="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">

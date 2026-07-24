@@ -9,7 +9,7 @@ import { Lightbox } from '@/components/ui/Lightbox';
 import { useTranslations } from '@/hooks/useTranslations';
 
 export default function Home() {
-  const { t } = useTranslations();
+  const { t, isRtl } = useTranslations();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<{src: string; title: string; desc: string} | null>(null);
 
@@ -80,7 +80,7 @@ export default function Home() {
 
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-            <div className="text-right">
+            <div className={isRtl ? 'text-right' : 'text-left'}>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-4 py-2 text-sm font-medium text-cyan-700">
                 <span className="h-2.5 w-2.5 rounded-full bg-cyan-500" />
                 <span className="inline" dangerouslySetInnerHTML={{ __html: t('hero', 'tagline') }} />

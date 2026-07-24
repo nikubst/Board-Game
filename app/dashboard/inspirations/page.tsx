@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { Card, EmptyState } from '@/components/ui/Card';
 import { Inspiration } from '@/types';
 import { supabase } from '@/lib/supabaseClient';
+import { useTranslations } from '@/hooks/useTranslations';
 
 // Mock inspiration data
 const mockInspirations: Inspiration[] = [
@@ -79,14 +80,13 @@ const categories = [
 ];
 
 export default function InspirationsPage() {
+  const { t } = useTranslations();
   const [inspirations, setInspirations] = useState<Inspiration[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    // Try to fetch from Supabase first, then fall back to mock data
     const fetchInspirations = async () => {
       try {
         const { data, error: fetchError } = await supabase
@@ -94,13 +94,10 @@ export default function InspirationsPage() {
           .select('*')
           .order('created_at', { ascending: false });
 
-        if (fetchError) {
-          console.log('Using mock inspiration data');
+        if (fetchError || !data || data.length === 0) {
           setInspirations(mockInspirations);
-        } else if (data && data.length > 0) {
-          setInspirations(data);
         } else {
-          setInspirations(mockInspirations);
+          setInspirations(data);
         }
       } catch (err) {
         console.error('Error fetching inspirations:', err);
@@ -126,7 +123,6 @@ export default function InspirationsPage() {
   };
 
   const copyToClipboard = (inspiration: Inspiration) => {
-    // In a real app, you might copy a description or URL
     if (typeof navigator !== 'undefined' && navigator.clipboard) {
       navigator.clipboard.writeText(`Inspiration: ${inspiration.title} (${inspiration.category})`);
     }
@@ -137,10 +133,10 @@ export default function InspirationsPage() {
       {/* Header */}
       <div className="animate-fade-in">
         <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
-          Inspiration Gallery
+          {t('inspirations', 'title')}
         </h1>
         <p className="text-slate-500">
-          Browse curated design inspiration to spark your creativity
+          {t('inspirations', 'subtitle')}
         </p>
       </div>
 
@@ -153,7 +149,7 @@ export default function InspirationsPage() {
             </svg>
             <input
               type="text"
-              placeholder="Search inspirations..."
+              placeholder={t('ideas', 'searchIdeas')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
@@ -162,7 +158,7 @@ export default function InspirationsPage() {
         </div>
 
         <div className="mt-4">
-          <p className="text-sm font-medium text-slate-500 mb-2">Categories</p>
+          <p className="text-sm font-medium text-slate-500 mb-2">{t('ideas', 'filter')}</p>
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
               <Button
@@ -171,7 +167,7 @@ export default function InspirationsPage() {
                 size="sm"
                 onClick={() => setSelectedCategory(category)}
               >
-                {category} ({getCategoryCount(category)})
+                {category === 'All' ? t('ideas', 'all') : category} ({getCategoryCount(category)})
               </Button>
             ))}
           </div>

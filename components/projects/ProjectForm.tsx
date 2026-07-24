@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Project, ProjectFormData, ProjectStatus } from '@/types';
+import { useTranslations } from '@/hooks/useTranslations';
 import { Input, Textarea, Select } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -19,6 +20,7 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
   isLoading = false,
 }) => {
   const router = useRouter();
+  const { t } = useTranslations();
   const [formData, setFormData] = useState<ProjectFormData>({
     title: '',
     description: '',
@@ -46,7 +48,6 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
     e.preventDefault();
     try {
       await onSubmit(formData);
-      // Optionally redirect after successful submission
       if (!project) {
         router.push('/dashboard/projects');
       }
@@ -56,46 +57,45 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
   };
 
   const statusOptions = [
-    { value: 'idea', label: 'Idea' },
-    { value: 'in_progress', label: 'In Progress' },
-    { value: 'completed', label: 'Completed' },
+    { value: 'idea', label: t('projects', 'statusIdea') },
+    { value: 'in_progress', label: t('projects', 'statusInProgress') },
+    { value: 'completed', label: t('projects', 'statusCompleted') },
   ];
 
   return (
     <Card className="max-w-2xl mx-auto" padding="lg">
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-slate-900">
-          {project ? 'Edit Project' : 'Create New Project'}
+          {project ? t('projects', 'editProject') : t('projects', 'createNewProject')}
         </h2>
         <p className="text-slate-500 mt-1">
           {project
-            ? 'Update your project details'
-            : 'Start a new creative project'}
+            ? t('projects', 'updateProjectDetails')
+            : t('projects', 'createNewProjectDesc')}
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <Input
-          label="Project Title"
+          label={t('projects', 'projectTitle')}
           name="title"
           value={formData.title}
           onChange={handleChange}
-          placeholder="e.g., Coffee Brand Identity"
+          placeholder={t('projects', 'projectTitlePlaceholder')}
           required
-          error={formData.title ? undefined : 'Title is required'}
         />
 
         <Textarea
-          label="Description"
+          label={t('projects', 'descriptionLabel')}
           name="description"
           value={formData.description}
           onChange={handleChange}
-          placeholder="Describe your project goals, scope, and requirements..."
+          placeholder={t('projects', 'descriptionPlaceholder')}
           rows={4}
         />
 
         <Select
-          label="Status"
+          label={t('projects', 'statusLabel')}
           name="status"
           value={formData.status}
           onChange={handleChange}
@@ -108,14 +108,14 @@ export const ProjectForm: React.FC<ProjectFormProps> = ({
             type="button"
             onClick={() => router.push('/dashboard/projects')}
           >
-            Cancel
+            {t('projects', 'cancel')}
           </Button>
           <Button
             type="submit"
             isLoading={isLoading}
             disabled={!formData.title}
           >
-            {project ? 'Update Project' : 'Create Project'}
+            {project ? t('projects', 'updateProject') : t('projects', 'createProject')}
           </Button>
         </div>
       </form>
@@ -128,6 +128,7 @@ export const QuickProjectForm: React.FC<{
   onSubmit: (data: ProjectFormData) => Promise<void>;
   isLoading?: boolean;
 }> = ({ onSubmit, isLoading = false }) => {
+  const { t } = useTranslations();
   const [formData, setFormData] = useState<ProjectFormData>({
     title: '',
     description: '',
@@ -150,30 +151,30 @@ export const QuickProjectForm: React.FC<{
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <Input
-        label="Project Title"
+        label={t('projects', 'projectTitle')}
         name="title"
         value={formData.title}
         onChange={handleChange}
-        placeholder="Project title..."
+        placeholder={t('projects', 'projectTitlePlaceholder')}
         required
       />
       <Textarea
-        label="Description (Optional)"
+        label={t('projects', 'descriptionLabel')}
         name="description"
         value={formData.description}
         onChange={handleChange}
-        placeholder="Project description..."
+        placeholder={t('projects', 'descriptionPlaceholder')}
         rows={2}
       />
       <Select
-        label="Status"
+        label={t('projects', 'statusLabel')}
         name="status"
         value={formData.status}
         onChange={handleChange}
         options={[
-          { value: 'idea', label: 'Idea' },
-          { value: 'in_progress', label: 'In Progress' },
-          { value: 'completed', label: 'Completed' },
+          { value: 'idea', label: t('projects', 'statusIdea') },
+          { value: 'in_progress', label: t('projects', 'statusInProgress') },
+          { value: 'completed', label: t('projects', 'statusCompleted') },
         ]}
       />
       <Button
@@ -182,7 +183,7 @@ export const QuickProjectForm: React.FC<{
         disabled={!formData.title}
         fullWidth
       >
-        Create Project
+        {t('projects', 'createProject')}
       </Button>
     </form>
   );

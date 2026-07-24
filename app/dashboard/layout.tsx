@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
+import { useTranslations } from '@/hooks/useTranslations';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { Navbar } from '@/components/layout/Navbar';
 
@@ -11,7 +12,8 @@ export default function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { user, isAuthenticated, loading } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
+  const { isRtl } = useTranslations();
   const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -29,11 +31,13 @@ export default function DashboardLayout({
     );
   }
 
+  const sidebarMargin = isRtl ? 'md:mr-[250px]' : 'md:ml-[250px]';
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Mobile sidebar toggle */}
       <button
-        className="md:hidden fixed top-4 right-4 z-50 p-2 rounded-lg bg-white/90 hover:bg-slate-100 transition-colors shadow-sm"
+        className={`md:hidden fixed top-4 ${isRtl ? 'left-4' : 'right-4'} z-50 p-2.5 rounded-2xl bg-white/90 hover:bg-slate-100 transition-colors shadow-md border border-slate-200`}
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
         <svg className="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,11 +52,7 @@ export default function DashboardLayout({
       />
 
       {/* Main content */}
-      <div
-        className={`transition-all duration-300 ${
-          isSidebarOpen ? 'md:ml-0' : 'md:ml-0'
-        }`}
-      >
+      <div className={`transition-all duration-300 ${sidebarMargin}`}>
         {/* Navbar */}
         <Navbar />
 
