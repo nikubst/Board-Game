@@ -1,399 +1,322 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Navbar } from '@/components/layout/Navbar';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
-import { Lightbox } from '@/components/ui/Lightbox';
-import { useTranslations } from '@/hooks/useTranslations';
+import { Navbar } from '@/components/Navbar';
+import { Footer } from '@/components/Footer';
+import { GameCard } from '@/components/GameCard';
+import { getGames } from '@/lib/gameStore';
+import { getStoredPrefs, savePrefs, Language } from '@/lib/storage';
+import { BoardGame } from '@/types/boardgame';
+import { Dices, Sparkles, Brain, Compass, Users, Award, ShieldCheck, ArrowRight, Gamepad2, Layers, Search } from 'lucide-react';
 
-export default function Home() {
-  const { t, isRtl } = useTranslations();
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<{src: string; title: string; desc: string} | null>(null);
+export default function HomePage() {
+  const [lang, setLang] = useState<Language>('fa');
+  const [games, setGames] = useState<BoardGame[]>([]);
+  const [activeTab, setActiveTab] = useState<'all' | 'iranian' | 'international'>('all');
 
-  const openLightbox = (src: string, title: string, desc: string) => {
-    setSelectedImage({ src, title, desc });
-    setLightboxOpen(true);
+  useEffect(() => {
+    const prefs = getStoredPrefs();
+    setLang(prefs.lang);
+    setGames(getGames());
+  }, []);
+
+  const handleToggleLang = () => {
+    const newLang = lang === 'fa' ? 'en' : 'fa';
+    setLang(newLang);
+    savePrefs({ lang: newLang });
   };
 
-  const closeLightbox = () => {
-    setLightboxOpen(false);
-    setSelectedImage(null);
-  };
+  const isFa = lang === 'fa';
 
-  const features = [
-    {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-      ),
-      title: t('featureCards', 'creativeConcepts.title'),
-      description: t('featureCards', 'creativeConcepts.description'),
-    },
-    {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
-      title: t('featureCards', 'projectManagement.title'),
-      description: t('featureCards', 'projectManagement.description'),
-    },
-    {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-        </svg>
-      ),
-      title: t('featureCards', 'colorSystems.title'),
-      description: t('featureCards', 'colorSystems.description'),
-    },
-    {
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-      ),
-      title: t('featureCards', 'designGallery.title'),
-      description: t('featureCards', 'designGallery.description'),
-    },
-  ];
-
-  const stats = [
-    { number: '150+', label: t('stats', 'completedProjects') },
-    { number: '50+', label: t('stats', 'satisfiedClients') },
-    { number: '300+', label: t('stats', 'colorSystems') },
-    { number: '200+', label: t('stats', 'designPieces') },
-  ];
+  const filteredGames = games.filter((g) => {
+    if (activeTab === 'iranian') return g.origin === 'iranian';
+    if (activeTab === 'international') return g.origin === 'international';
+    return true;
+  });
 
   return (
-    <div className="min-h-screen">
-      {/* Navigation */}
-      <Navbar />
+    <div className={`min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-amber-500 selection:text-slate-950 ${isFa ? 'rtl' : 'ltr'}`} dir={isFa ? 'rtl' : 'ltr'}>
+      <Navbar lang={lang} onToggleLang={handleToggleLang} />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-slate-50 pt-24 pb-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(6,182,212,0.14),_transparent_45%),radial-gradient(circle_at_bottom_right,_rgba(14,165,233,0.16),_transparent_40%)]" />
-
-        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-            <div className={isRtl ? 'text-right' : 'text-left'}>
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-4 py-2 text-sm font-medium text-cyan-700">
-                <span className="h-2.5 w-2.5 rounded-full bg-cyan-500" />
-                <span className="inline" dangerouslySetInnerHTML={{ __html: t('hero', 'tagline') }} />
+      <section className="relative overflow-hidden pt-12 pb-24 border-b border-slate-800/80">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/15 via-slate-950 to-slate-950 pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left Hero Text */}
+            <div className="lg:col-span-7 space-y-6 text-center lg:text-right">
+              
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold">
+                <Sparkles className="w-3.5 h-3.5 animate-pulse" />
+                <span>{isFa ? 'مرجع تخصصی نقد، بررسی و تحلیل مهارتی بازی‌های فکری و رومیزی' : 'Premier Mind & Board Games Reference Hub'}</span>
               </div>
 
-              <p className="mb-8 max-w-2xl text-lg text-slate-700 sm:text-xl">
-                {t('hero', 'description')}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-100 leading-tight tracking-tight">
+                {isFa ? (
+                  <>
+                    جهان شگفت‌انگیز <span className="bg-gradient-to-r from-amber-300 via-orange-400 to-amber-500 bg-clip-text text-transparent">بازی‌های فکری و رومیزی</span> ایرانی و جهانی
+                  </>
+                ) : (
+                  <>
+                    Discover the World of <span className="bg-gradient-to-r from-amber-300 via-orange-400 to-amber-500 bg-clip-text text-transparent">Mind & Board Games</span>
+                  </>
+                )}
+              </h1>
+
+              <p className="text-base text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                {isFa
+                  ? 'معرفی، نقد، قوانین و تحلیل مهارتی بازی‌های فکری، رومیزی، کارتی و استراتژیک (غیردیجیتالی) طراحان ایرانی و بین‌المللی همراه با بررسی پتانسیل‌های تقویت هوش، حل مسئله و خلاقیت.'
+                  : 'Explore physical board & mind games by Iranian and global creators with rule overviews, skill metrics, strategy guides, and reviews.'}
               </p>
 
-              <div className="flex flex-col gap-4 sm:flex-row">
-                <Link href="#gallery">
-                  <Button variant="primary" size="lg" className="text-lg">
-                    {t('common', 'viewGallery')}
-                  </Button>
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                <Link
+                  href="/games"
+                  className="flex items-center gap-2 px-6 py-3.5 rounded-2xl text-sm font-bold bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-slate-950 shadow-lg shadow-amber-500/25 transition-all transform hover:-translate-y-0.5"
+                >
+                  <Layers className="w-5 h-5" />
+                  <span>{isFa ? 'مشاهده فهرست بازی‌های فکری' : 'Explore Mind Games'}</span>
+                  <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                 </Link>
-                <Link href="/auth/login">
-                  <Button variant="outline" size="lg" className="text-lg">
-                    {t('common', 'exploreStudio')}
-                  </Button>
+
+                <Link
+                  href="/play"
+                  className="flex items-center gap-2 px-6 py-3.5 rounded-2xl text-sm font-bold bg-slate-900 hover:bg-slate-800 border border-slate-700 text-amber-400 hover:text-amber-300 transition-all"
+                >
+                  <Gamepad2 className="w-5 h-5" />
+                  <span>{isFa ? 'آزمایشگاه منطق و الگوریتم' : 'Mind Logic Simulator'}</span>
                 </Link>
               </div>
 
-              <div className="mt-10 flex flex-wrap gap-4 text-sm text-slate-600">
-                <div className="rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 shadow-sm">
-                  <span className="block font-semibold text-slate-900">150+</span>
-                  <span className="inline">{t('stats', 'completedProjects')}</span>
+              {/* Quick Stats Grid */}
+              <div className="grid grid-cols-3 gap-4 pt-8 border-t border-slate-800/80 max-w-lg mx-auto lg:mx-0">
+                <div>
+                  <span className="block text-2xl font-black text-amber-400">۱۶+</span>
+                  <span className="text-xs text-slate-400">{isFa ? 'بازی فکری ثبت‌شده' : 'Mind Games Reviewed'}</span>
                 </div>
-                <div className="rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 shadow-sm">
-                  <span className="block font-semibold text-slate-900">24/7</span>
-                  <span className="inline">{t('stats', 'creativeCollaboration')}</span>
+                <div>
+                  <span className="block text-2xl font-black text-orange-400">۲۰+</span>
+                  <span className="text-xs text-slate-400">{isFa ? 'طراح ایرانی و جهانی' : 'Iranian & Global Creators'}</span>
+                </div>
+                <div>
+                  <span className="block text-2xl font-black text-emerald-400">۱۲</span>
+                  <span className="text-xs text-slate-400">{isFa ? 'مهارت شناختی کلیدی' : 'Core Cognitive Skills'}</span>
                 </div>
               </div>
+
             </div>
 
-            <Card className="border-slate-200/80 bg-white/90 p-6 shadow-[0_20px_80px_-24px_rgba(15,23,42,0.35)] lg:p-8">
-              <div className="rounded-[1.75rem] bg-gradient-to-br from-slate-900 via-slate-800 to-cyan-700 p-6 text-white">
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="text-sm uppercase tracking-[0.3em] text-cyan-200">{t('studioFocus', 'title')}</p>
-                    <h3 className="mt-2 text-xl font-semibold">{t('studioFocus', 'thisMonth')}</h3>
+            {/* Right Hero Graphic Card */}
+            <div className="lg:col-span-5 relative">
+              <div className="relative mx-auto max-w-md rounded-3xl bg-gradient-to-b from-slate-900 to-slate-950 p-6 border border-slate-800 shadow-2xl shadow-amber-500/10">
+                
+                <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+                  <div className="flex items-center gap-2">
+                    <Award className="w-5 h-5 text-amber-400" />
+                    <span className="text-sm font-bold text-slate-200">
+                      {isFa ? 'بازی فکری پیشنهادی هفته' : 'Featured Game of the Week'}
+                    </span>
                   </div>
-                  <div className="rounded-2xl bg-white/10 px-3 py-2 text-sm text-cyan-100">
-                    3 {t('studioFocus', 'newConcepts')}
-                  </div>
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-400 border border-amber-500/40">
+                    {isFa ? 'نوستالژیک و اصیل' : 'Classic Board Game'}
+                  </span>
                 </div>
 
-                <div className="mt-6 space-y-3">
-                  <div className="rounded-2xl bg-white/10 p-4 backdrop-blur-sm">
-                    <p className="font-semibold">{t('studioFocus', 'brandSystems')}</p>
-                    <p className="mt-1 text-sm text-slate-200">{t('studioFocus', 'brandSystemsDesc')}</p>
-                  </div>
-                  <div className="rounded-2xl bg-white/10 p-4 backdrop-blur-sm">
-                    <p className="font-semibold">{t('studioFocus', 'creativeCampaigns')}</p>
-                    <p className="mt-1 text-sm text-slate-200">{t('studioFocus', 'creativeCampaignsDesc')}</p>
-                  </div>
-                  <div className="rounded-2xl bg-white/10 p-4 backdrop-blur-sm">
-                    <p className="font-semibold">{t('studioFocus', 'digitalExperiences')}</p>
-                    <p className="mt-1 text-sm text-slate-200">{t('studioFocus', 'digitalExperiencesDesc')}</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-white">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, index) => (
-              <Card key={index} className="animate-slide-up p-6" style={{ animationDelay: `${index * 100}ms` }} hoverEffect>
-                <div className="mb-4 text-cyan-500">{feature.icon}</div>
-                <h3 className="mb-2 text-lg font-semibold text-slate-900">{feature.title}</h3>
-                <p className="text-sm text-slate-600">{feature.description}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Statistics Section */}
-      <section className="py-16 bg-slate-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {stats.map((stat, index) => (
-              <div key={index} className="animate-fade-in" style={{ animationDelay: `${index * 200}ms` }}>
-                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white shadow-sm flex items-center justify-center border border-slate-200">
-                  <span className="text-3xl sm:text-4xl font-bold text-slate-900">{stat.number}</span>
-                </div>
-                <p className="text-sm text-slate-600">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="bg-white py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <p className="mb-4 text-sm text-cyan-600">{t('features', 'title')}</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              {t('features', 'title')}
-            </h2>
-            <p className="mx-auto max-w-2xl text-lg text-slate-600">
-              {t('features', 'subtitle')}
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {[
-              {
-                title: t('features', 'items.strategy.title'),
-                text: t('features', 'items.strategy.text'),
-              },
-              {
-                title: t('features', 'items.visual.title'),
-                text: t('features', 'items.visual.text'),
-              },
-              {
-                title: t('features', 'items.collaboration.title'),
-                text: t('features', 'items.collaboration.text'),
-              },
-            ].map((item, index) => (
-              <Card key={item.title} className="border-slate-200/80 bg-slate-50/80 p-8" hoverEffect>
-                <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-100 text-cyan-600">
-                  <span className="text-lg font-semibold">0{index + 1}</span>
-                </div>
-                <h3 className="mb-3 text-xl font-semibold text-slate-900">{item.title}</h3>
-                <p className="text-slate-600">{item.text}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-28 bg-slate-100 border-t border-slate-200">
-        <div className="section-container text-center">
-          <p className="inline-block px-6 py-2.5 rounded-full bg-white shadow-sm text-cyan-600 text-sm font-medium mb-8 border border-slate-200">
-            {t('common', 'letCollaborate')}
-          </p>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight">
-            {t('cta', 'title')}
-          </h2>
-          <p className="text-lg text-slate-600 mb-10 max-w-2xl mx-auto">
-            {t('cta', 'description')}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/auth/register">
-              <Button size="lg" variant="primary">
-                {t('common', 'startYourProject')}
-              </Button>
-            </Link>
-            <Link href="/dashboard">
-              <Button variant="outline" size="lg" className="text-lg">
-                {t('common', 'viewOurWork')}
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Art Gallery Section */}
-      <section id="gallery" className="py-20 bg-slate-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
-            <div>
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-100 text-cyan-700 text-sm font-medium border border-slate-200">
-                {t('gallery', 'title')}
-              </span>
-              <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-slate-900">
-                {t('gallery', 'subtitle')}
-              </h2>
-              <p className="mt-3 text-slate-600 max-w-xl">
-                {t('gallery', 'description')}
-              </p>
-            </div>
-            <p className="text-sm text-slate-500">
-              {t('gallery', 'updated')}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {[
-              {
-                src: '/gallery1.jpg',
-                title: 'Dreamlines — Composition I',
-                artist: 'Public Domain',
-                desc: 'Photograph of a public-domain painting from Wikimedia Commons.',
-              },
-              {
-                src: '/gallery2.jpg',
-                title: 'Ocean Bloom — Palette Study',
-                artist: 'Public Domain',
-                desc: 'Photograph of a public-domain painting from Wikimedia Commons.',
-              },
-              {
-                src: '/gallery3.jpg',
-                title: 'Skyway — Motion Study',
-                artist: 'Public Domain',
-                desc: 'Photograph of a public-domain painting from Wikimedia Commons.',
-              },
-              {
-                src: '/gallery4.jpg',
-                title: 'Citrus Echo — Warm Studies',
-                artist: 'Public Domain',
-                desc: 'Photograph of a public-domain painting from Wikimedia Commons.',
-              },
-              {
-                src: '/gallery5.jpg',
-                title: 'Petal Drift — Soft Study',
-                artist: 'Public Domain',
-                desc: 'Photograph of a public-domain painting from Wikimedia Commons.',
-              },
-              {
-                src: '/gallery6.jpg',
-                title: 'Neon Tides — Contrast Study',
-                artist: 'Public Domain',
-                desc: 'Photograph of a public-domain painting from Wikimedia Commons.',
-              },
-              {
-                src: '/gallery7.jpg',
-                title: 'Amber Veil — Texture Play',
-                artist: 'Public Domain',
-                desc: 'Photograph of a public-domain painting from Wikimedia Commons.',
-              },
-              {
-                src: '/gallery8.jpg',
-                title: 'Lavender Echo — Minimal Forms',
-                artist: 'Public Domain',
-                desc: 'Photograph of a public-domain painting from Wikimedia Commons.',
-              },
-              {
-                src: '/gallery9.png',
-                title: 'Graphic Study — Abstract Background',
-                artist: 'Public Domain',
-                desc: 'Graphic design background / vector rasterized from Wikimedia Commons.',
-              },
-              {
-                src: '/gallery10.svg',
-                title: 'Graphic Banner — Historic Motif',
-                artist: 'Public Domain',
-                desc: 'Scalable vector graphic sourced from Wikimedia Commons.',
-              },
-              {
-                src: '/gallery11.png',
-                title: 'Vector Swan — Illustration',
-                artist: 'Public Domain',
-                desc: 'High-resolution vector illustration exported as PNG for web.',
-              },
-              {
-                src: '/gallery12.svg',
-                title: 'Coat of Arms — Emblem',
-                artist: 'Public Domain',
-                desc: 'SVG emblem sourced from Wikimedia Commons (rendered inline).',
-              },
-            ].map((item) => (
-              <div key={item.src} className="group overflow-hidden rounded-[1.6rem] border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer" onClick={() => openLightbox(item.src, item.title, item.desc)}>
-                <div className="relative">
+                <div className="relative aspect-video rounded-xl overflow-hidden mt-4 bg-slate-950">
                   <img
-                    src={item.src}
-                    alt={item.title}
-                    className="h-80 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    src="/mensch.jpg"
+                    alt="Mensch Board Game - بازی منچ"
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-900/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <div className="absolute bottom-0 left-0 right-0 translate-y-4 p-5 text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    <p className="text-sm uppercase tracking-[0.25em] text-cyan-200">{t('gallery', 'featuredStudy')}</p>
-                    <p className="mt-1 font-medium">{item.artist}</p>
+                </div>
+
+                <div className="pt-4 space-y-2">
+                  <h3 className="text-lg font-bold text-slate-100">
+                    {isFa ? 'بازی فکری منچ (Mensch)' : 'Mensch (Ludo Classic)'}
+                  </h3>
+                  <p className="text-xs text-slate-400 line-clamp-2">
+                    {isFa
+                      ? 'اصیل‌ترین و محبوب‌ترین بازی فکری تاس و مهره؛ تمرینی عالی برای مدیریت ریسک، صبر و مدیریت هیجانات.'
+                      : 'The most iconic nostalgic tabletop board game in Iran. A classic game of dice, pawns, patience and strategy.'}
+                  </p>
+
+                  <div className="pt-3 flex items-center justify-between border-t border-slate-800/80">
+                    <span className="text-xs font-bold text-amber-400">امتیاز: ۹.۵ / ۱۰</span>
+                    <Link
+                      href="/games/mensch-game"
+                      className="text-xs font-semibold text-slate-300 hover:text-white underline"
+                    >
+                      {isFa ? 'مشاهده کامل' : 'View Full Details'}
+                    </Link>
                   </div>
                 </div>
-                <div className="p-5">
-                  <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
-                  <p className="mt-2 text-slate-500">{item.desc}</p>
-                </div>
+
               </div>
-            ))}
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* Lightbox */}
-      {selectedImage && (
-        <Lightbox
-          isOpen={lightboxOpen}
-          onClose={closeLightbox}
-          imageSrc={selectedImage.src}
-          title={selectedImage.title}
-          description={selectedImage.desc}
-        />
-      )}
-
-      {/* Footer */}
-      <footer className="py-16 bg-slate-50 border-t border-slate-200">
-        <div className="section-container">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-4 mb-6">
-              <div className="p-4 rounded-3xl bg-gradient-to-br from-sky-500 to-cyan-500 shadow-sky-200/80">
-                <span className="text-2xl font-bold text-white">N</span>
-              </div>
-              <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-cyan-600">
-                NIKOO
-              </span>
-            </div>
-            <p className="text-slate-600 mb-3">
-              {t('footer', 'copyright').replace('{year}', new Date().getFullYear().toString())}
-            </p>
-            <p className="text-sm text-slate-500/80">
-              {t('footer', 'description')}
+      {/* Learning & Educational Potentials Showcase */}
+      <section className="py-16 bg-slate-950 border-b border-slate-800/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center space-y-3 max-w-2xl mx-auto mb-12">
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-100">
+              {isFa ? 'پتانسیل‌ها و مهارت‌های قابل یادگیری' : 'Learning Potentials & Skill Benefits'}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400">
+              {isFa
+                ? 'بازی‌های رومیزی صرفاً سرگرمی نیستند؛ ابزاری نیرومند برای پرورش هوش و مهارتهای فردی و گروهی می‌باشند.'
+                : 'Board games are more than entertainment—they are tools for developing analytical thinking and teamwork.'}
             </p>
           </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-sky-500/40 transition-all space-y-3">
+              <div className="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400">
+                <Brain className="w-6 h-6" />
+              </div>
+              <h3 className="text-base font-bold text-slate-200">
+                {isFa ? 'حل مسئله و تفکر منطقی' : 'Problem Solving & Logic'}
+              </h3>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                {isFa
+                  ? 'بررسی چالش‌ها، ارزیابی شرایط متغیر و ساخت راهکارهای خلاقانه برای عبور از موانع.'
+                  : 'Analyzing complex scenarios, adapting to variables, and crafting creative solutions.'}
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-500/40 transition-all space-y-3">
+              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                <Compass className="w-6 h-6" />
+              </div>
+              <h3 className="text-base font-bold text-slate-200">
+                {isFa ? 'تفکر استراتژیک و برنامه‌ریزی' : 'Strategic Thinking & Tactics'}
+              </h3>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                {isFa
+                  ? 'تدوین نقشه پیروزی بلندمدت و پیش‌بینی حرکت‌های حریفان چند گام جلوتر.'
+                  : 'Formulating long-term game plans and anticipating rival moves turns ahead.'}
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 transition-all space-y-3">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <Users className="w-6 h-6" />
+              </div>
+              <h3 className="text-base font-bold text-slate-200">
+                {isFa ? 'همکاری و هوش هیجانی' : 'Team Collaboration & EQ'}
+              </h3>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                {isFa
+                  ? 'مذاکره، کار گروهی در بازی‌های Co-op و درک زبان بدن و رفتارهای انسانی.'
+                  : 'Teamwork in cooperative titles, effective negotiation, and reading human cues.'}
+              </p>
+            </div>
+
+          </div>
         </div>
-      </footer>
+      </section>
+
+      {/* Main Board Games Catalog Grid */}
+      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-100">
+              {isFa ? 'فهرست برجسته‌ترین بازی‌های رومیزی' : 'Featured Board Games Catalog'}
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+              {isFa ? 'بازی‌های ایرانی و بین‌المللی همراه با مشخصات و راهنمای کامل' : 'Browse top Iranian & International board games with detailed guides'}
+            </p>
+          </div>
+
+          {/* Filter Tabs */}
+          <div className="flex items-center gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800">
+            <button
+              onClick={() => setActiveTab('all')}
+              className={`px-4 py-2 text-xs font-bold rounded-lg transition-all ${
+                activeTab === 'all'
+                  ? 'bg-amber-500 text-slate-950 shadow-md'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              {isFa ? 'همه بازی‌ها' : 'All Games'}
+            </button>
+            <button
+              onClick={() => setActiveTab('iranian')}
+              className={`px-4 py-2 text-xs font-bold rounded-lg transition-all ${
+                activeTab === 'iranian'
+                  ? 'bg-amber-500 text-slate-950 shadow-md'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              {isFa ? 'طراحی ایران 🇮🇷' : 'Iranian 🇮🇷'}
+            </button>
+            <button
+              onClick={() => setActiveTab('international')}
+              className={`px-4 py-2 text-xs font-bold rounded-lg transition-all ${
+                activeTab === 'international'
+                  ? 'bg-amber-500 text-slate-950 shadow-md'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              {isFa ? 'بین‌المللی 🌐' : 'International 🌐'}
+            </button>
+          </div>
+        </div>
+
+        {/* Game Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredGames.map((game) => (
+            <GameCard key={game.id} game={game} lang={lang} />
+          ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link
+            href="/games"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl text-xs font-bold bg-slate-900 hover:bg-slate-800 border border-slate-700 text-amber-400 hover:text-amber-300 transition-all"
+          >
+            <Search className="w-4 h-4" />
+            <span>{isFa ? 'جستجو و فیلتر پیشرفته در تمام بازی‌ها' : 'Advanced Search & Filter Games'}</span>
+          </Link>
+        </div>
+
+      </section>
+
+      {/* Call to Action for Designers */}
+      <section className="py-16 bg-gradient-to-r from-amber-950/40 via-slate-900 to-slate-950 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
+          <div className="w-16 h-16 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center mx-auto text-amber-400">
+            <Dices className="w-8 h-8" />
+          </div>
+          <h2 className="text-2xl sm:text-4xl font-black text-slate-100">
+            {isFa ? 'طراح یا ناشر بازی‌های رومیزی هستید؟' : 'Are you a Board Game Designer or Publisher?'}
+          </h2>
+          <p className="text-sm text-slate-300 leading-relaxed">
+            {isFa
+              ? 'اطلاعات، تصاویر و مشخصات اثر خود را در مرجع بازی‌های رومیزی ثبت کنید تا کاربران ایرانی با خلق اثر شما بیشتر آشنا شوند.'
+              : 'Submit your board game details, artwork, and tutorials to be featured in our official Iranian & Global board game catalog.'}
+          </p>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-sm font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-xl shadow-amber-500/20 transition-all"
+          >
+            <ShieldCheck className="w-5 h-5" />
+            <span>{isFa ? 'درخواست ثبت اثر جدید' : 'Submit Your Game'}</span>
+          </Link>
+        </div>
+      </section>
+
+      <Footer lang={lang} />
     </div>
   );
 }

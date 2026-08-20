@@ -21,8 +21,8 @@ export default function DashboardPage() {
   const userName = user?.email
     ? user.email.split('@')[0]
     : isRtl
-    ? 'نیکو باستانی'
-    : 'Nikoo Bastani';
+    ? 'کاربر گرامی'
+    : 'Valued User';
 
   const welcomeText = t('dashboard', 'welcomeUser').replace('{name}', userName);
 

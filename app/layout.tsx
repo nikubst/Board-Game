@@ -11,24 +11,24 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "NIKOO Art Studio - Creative Design Workspace",
-    template: "%s | NIKOO Art Studio",
+    default: "Board Game - مرجع بازی‌های فکری و رومیزی",
+    template: "%s | Board Game",
   },
-  description: "A creative workspace for designers to generate ideas, manage projects, and build color palettes.",
-  keywords: ["design", "creative", "art", "graphic design", "color palette", "ideas", "projects", "inspiration"],
-  authors: [{ name: "NIKOO Art Studio" }],
+  description: "مرجع تخصصی نقد، بررسی، معرفی و تحلیل مهارتی بازی‌های فکری و رومیزی فیزیکی ایرانی و بین‌المللی.",
+  keywords: ["board game", "بازی فکری", "بازی رومیزی", "منچ", "استوژیت", "کاتان", "شطرنج", "تخته نرد", "تحلیل مهارت"],
+  authors: [{ name: "Board Game" }],
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: "https://nikoo-art-studio.com",
-    siteName: "NIKOO Art Studio",
-    title: "NIKOO Art Studio - Creative Design Workspace",
-    description: "A creative workspace for designers to generate ideas, manage projects, and build color palettes.",
+    locale: "fa_IR",
+    url: "https://boardgame-arena.ir",
+    siteName: "Board Game",
+    title: "Board Game - مرجع بازی‌های فکری و رومیزی",
+    description: "مرجع تخصصی نقد، بررسی، معرفی و تحلیل مهارتی بازی‌های فکری و رومیزی فیزیکی ایرانی و بین‌المللی.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NIKOO Art Studio - Creative Design Workspace",
-    description: "A creative workspace for designers to generate ideas, manage projects, and build color palettes.",
+    title: "Board Game - مرجع بازی‌های فکری و رومیزی",
+    description: "مرجع تخصصی نقد، بررسی، معرفی و تحلیل مهارتی بازی‌های فکری و رومیزی فیزیکی ایرانی و بین‌المللی.",
   },
   robots: {
     index: true,
