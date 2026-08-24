@@ -8,7 +8,7 @@ import { GameCard } from '@/components/GameCard';
 import { getGames } from '@/lib/gameStore';
 import { getStoredPrefs, savePrefs, Language } from '@/lib/storage';
 import { BoardGame } from '@/types/boardgame';
-import { Dices, Sparkles, Brain, Compass, Users, Award, ShieldCheck, ArrowRight, Gamepad2, Layers, Search } from 'lucide-react';
+import { Dices, Sparkles, Brain, Compass, Users, Award, ShieldCheck, ArrowRight, Layers, Search } from 'lucide-react';
 
 export default function HomePage() {
   const [lang, setLang] = useState<Language>('fa');
@@ -81,14 +81,6 @@ export default function HomePage() {
                   <Layers className="w-5 h-5" />
                   <span>{isFa ? 'مشاهده فهرست بازی‌های فکری' : 'Explore Mind Games'}</span>
                   <ArrowRight className="w-4 h-4 rtl:rotate-180" />
-                </Link>
-
-                <Link
-                  href="/play"
-                  className="flex items-center gap-2 px-6 py-3.5 rounded-2xl text-sm font-bold bg-slate-900 hover:bg-slate-800 border border-slate-700 text-amber-400 hover:text-amber-300 transition-all"
-                >
-                  <Gamepad2 className="w-5 h-5" />
-                  <span>{isFa ? 'آزمایشگاه منطق و الگوریتم' : 'Mind Logic Simulator'}</span>
                 </Link>
               </div>
 

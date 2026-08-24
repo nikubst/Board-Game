@@ -51,11 +51,6 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
                 </Link>
               </li>
               <li>
-                <Link href="/play" className="hover:text-amber-400 transition-colors">
-                  {isFa ? 'میدان بازی‌های آنلاین' : 'Playable Online Games'}
-                </Link>
-              </li>
-              <li>
                 <Link href="/admin" className="hover:text-amber-400 transition-colors">
                   {isFa ? 'مدیریت و افزودن بازی' : 'Admin CMS Panel'}
                 </Link>

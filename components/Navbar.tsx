@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Dices, Search, Globe, ShieldAlert, Menu, X, Gamepad2, Layers, Info, PhoneCall } from 'lucide-react';
+import { Dices, Search, Globe, ShieldAlert, Menu, X, Layers, Info, PhoneCall } from 'lucide-react';
 import { Language } from '@/lib/storage';
 
 interface NavbarProps {
@@ -18,7 +18,6 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang }) => {
   const navLinks = [
     { href: '/', labelFa: 'صفحه اصلی', labelEn: 'Home', icon: Dices },
     { href: '/games', labelFa: 'فهرست بازی‌های فکری', labelEn: 'Mind & Board Games', icon: Layers },
-    { href: '/play', labelFa: 'آزمایشگاه منطق بازی', labelEn: 'Logic Lab', icon: Gamepad2 },
     { href: '/about', labelFa: 'درباره ما', labelEn: 'About Us', icon: Info },
     { href: '/contact', labelFa: 'تماس با ما', labelEn: 'Contact Us', icon: PhoneCall },
   ];
