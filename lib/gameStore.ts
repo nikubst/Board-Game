@@ -865,7 +865,7 @@ export const INITIAL_COMMENTS: UserComment[] = [
 ];
 
 // LocalStorage Persistence Helpers
-const GAMES_STORAGE_KEY = 'bg_portal_games_v2';
+const GAMES_STORAGE_KEY = 'bg_portal_games_v3';
 const COMMENTS_STORAGE_KEY = 'bg_portal_comments_v1';
 
 export function getGames(): BoardGame[] {
