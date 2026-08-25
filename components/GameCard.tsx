@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Users, Clock, Star, Award, ArrowUpRight } from 'lucide-react';
+import { Users, Clock, Star, Award, ArrowUpRight, Globe } from 'lucide-react';
 import { BoardGame } from '@/types/boardgame';
 import { Language } from '@/lib/storage';
 import { SkillBadge } from './SkillBadge';
@@ -31,15 +31,16 @@ export const GameCard: React.FC<GameCardProps> = ({ game, lang }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
 
         {/* Origin Badge */}
-        <div className="absolute top-3 right-3 flex items-center gap-2">
+        <div className="absolute top-3 right-3 flex items-center gap-2 z-10">
           {game.origin === 'iranian' ? (
-            <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500 text-slate-950 shadow-lg flex items-center gap-1">
-              <Award className="w-3.5 h-3.5" />
-              {isFa ? 'طراحی ایران 🇮🇷' : 'Iranian Design'}
+            <span className="px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 shadow-lg shadow-amber-500/30 flex items-center gap-1.5 border border-amber-300/40">
+              <Award className="w-3.5 h-3.5 fill-slate-950" />
+              <span>{isFa ? 'بازی ایرانی 🇮🇷' : 'Iranian Game'}</span>
             </span>
           ) : (
-            <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-900/90 text-slate-300 border border-slate-700 backdrop-blur-md">
-              {isFa ? 'بین‌المللی 🌐' : 'Global'}
+            <span className="px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-lg shadow-sky-500/30 flex items-center gap-1.5 border border-sky-300/40">
+              <Globe className="w-3.5 h-3.5 stroke-[2.5]" />
+              <span>{isFa ? 'بازی بین‌المللی 🌐' : 'Global Game'}</span>
             </span>
           )}
         </div>

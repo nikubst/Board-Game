@@ -11,7 +11,7 @@ import { CommentSection } from '@/components/CommentSection';
 import { getGames } from '@/lib/gameStore';
 import { getStoredPrefs, savePrefs, Language } from '@/lib/storage';
 import { BoardGame } from '@/types/boardgame';
-import { ArrowLeft, ArrowRight, Users, Clock, Star, Award, BookOpen, ExternalLink, Calendar, UserCheck, ShieldCheck, Sparkles, AlertCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Users, Clock, Star, Award, BookOpen, ExternalLink, Calendar, UserCheck, ShieldCheck, Sparkles, AlertCircle, Globe } from 'lucide-react';
 
 export default function GameDetailPage() {
   const params = useParams();
@@ -68,9 +68,15 @@ export default function GameDetailPage() {
           </Link>
 
           <div className="flex items-center gap-2">
-            {game.origin === 'iranian' && (
-              <span className="px-2.5 py-0.5 rounded-full font-bold bg-amber-500/20 text-amber-400 border border-amber-500/40">
-                {isFa ? 'طراحی ایران 🇮🇷' : 'Iranian Game'}
+            {game.origin === 'iranian' ? (
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center gap-1.5">
+                <Award className="w-3.5 h-3.5 fill-amber-400" />
+                <span>{isFa ? 'بازی ساخت / بازطراحی ایران 🇮🇷' : 'Iranian Game 🇮🇷'}</span>
+              </span>
+            ) : (
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-sky-500/20 text-sky-400 border border-sky-500/40 flex items-center gap-1.5">
+                <Globe className="w-3.5 h-3.5" />
+                <span>{isFa ? 'بازی بین‌المللی (جهانی) 🌐' : 'International Game 🌐'}</span>
               </span>
             )}
           </div>
