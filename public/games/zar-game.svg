@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09090b"/>
+      <stop offset="50%" stop-color="#18181b"/>
+      <stop offset="100%" stop-color="#27272a"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Mystical Persian Ritual Geometry Circle -->
+  <g transform="translate(400, 250)">
+    <circle cx="0" cy="0" r="160" fill="none" stroke="#d97706" stroke-width="3" stroke-dasharray="8 6" opacity="0.6"/>
+    <circle cx="0" cy="0" r="130" fill="none" stroke="#b45309" stroke-width="2"/>
+    <polygon points="0,-130 112,65 -112,65" fill="none" stroke="#f59e0b" stroke-width="3" opacity="0.8"/>
+    <polygon points="0,130 112,-65 -112,-65" fill="none" stroke="#f59e0b" stroke-width="3" opacity="0.8"/>
+    <circle cx="0" cy="0" r="40" fill="#451a03" stroke="#f59e0b" stroke-width="3"/>
+  </g>
+
+  <!-- Glowing Ritual Candles -->
+  <g filter="url(#glow)">
+    <rect x="180" y="320" width="24" height="70" fill="#fef3c7" rx="4"/>
+    <path d="M192 320 Q196 290 192 280 Q188 290 192 320 Z" fill="#f59e0b"/>
+    
+    <rect x="596" y="320" width="24" height="70" fill="#fef3c7" rx="4"/>
+    <path d="M608 320 Q612 290 608 280 Q604 290 608 320 Z" fill="#f59e0b"/>
+  </g>
+
+  <!-- Title Overlay -->
+  <rect x="0" y="490" width="800" height="110" fill="rgba(9, 9, 11, 0.9)"/>
+  <text x="400" y="540" font-family="Tahoma, sans-serif" font-size="32" font-weight="bold" fill="#f59e0b" text-anchor="middle">بازی فکری زار (Zar)</text>
+  <text x="400" y="575" font-family="sans-serif" font-size="18" fill="#d4d4d8" text-anchor="middle">بردگیم رازآلود، آیین طلسم و فولکلور ایرانی</text>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="dice" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  
+  <!-- Board Cross Track Representation -->
+  <g filter="url(#shadow)" opacity="0.15">
+    <rect x="250" y="50" width="300" height="500" rx="30" fill="#ffffff"/>
+    <rect x="50" y="250" width="700" height="100" rx="30" fill="#ffffff"/>
+  </g>
+  
+  <!-- Colored Pawns -->
+  <g filter="url(#shadow)">
+    <!-- Red Pawns -->
+    <circle cx="220" cy="180" r="35" fill="#ef4444"/>
+    <circle cx="220" cy="180" r="25" fill="#fca5a5" opacity="0.4"/>
+    <path d="M220 140 L230 180 L210 180 Z" fill="#ffffff" opacity="0.3"/>
+    
+    <!-- Blue Pawns -->
+    <circle cx="580" cy="180" r="35" fill="#3b82f6"/>
+    <circle cx="580" cy="180" r="25" fill="#93c5fd" opacity="0.4"/>
+    
+    <!-- Green Pawns -->
+    <circle cx="220" cy="420" r="35" fill="#10b981"/>
+    <circle cx="220" cy="420" r="25" fill="#6ee7b7" opacity="0.4"/>
+    
+    <!-- Yellow Pawns -->
+    <circle cx="580" cy="420" r="35" fill="#f59e0b"/>
+    <circle cx="580" cy="420" r="25" fill="#fde047" opacity="0.4"/>
+  </g>
+  
+  <!-- Central Glowing Dice -->
+  <g transform="translate(400, 300)" filter="url(#shadow)">
+    <rect x="-60" y="-60" width="120" height="120" rx="24" fill="url(#dice)"/>
+    <!-- 6 dots -->
+    <circle cx="-30" cy="-30" r="9" fill="#ffffff"/>
+    <circle cx="-30" cy="0" r="9" fill="#ffffff"/>
+    <circle cx="-30" cy="30" r="9" fill="#ffffff"/>
+    <circle cx="30" cy="-30" r="9" fill="#ffffff"/>
+    <circle cx="30" cy="0" r="9" fill="#ffffff"/>
+    <circle cx="30" cy="30" r="9" fill="#ffffff"/>
+  </g>
+
+  <!-- Title Overlay -->
+  <rect x="0" y="490" width="800" height="110" fill="rgba(15, 23, 42, 0.85)"/>
+  <text x="400" y="540" font-family="Tahoma, sans-serif" font-size="32" font-weight="bold" fill="#f59e0b" text-anchor="middle">بازی فکری منچ (Mensch)</text>
+  <text x="400" y="575" font-family="sans-serif" font-size="18" fill="#94a3b8" text-anchor="middle">Classic Board Game of Pawns &amp; Probabilities</text>
+</svg>

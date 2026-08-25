@@ -17,9 +17,9 @@ export const INITIAL_GAMES: BoardGame[] = [
       fa: 'برای خارج کردن مهره نیاز به تاس ۶ دارید. اگر روی مهره حریف بروید، آن مهره به نقطه شروع بازمی‌گردد! برنده کسی است که هر ۴ مهره را زودتر به خانه امن برساند.',
       en: 'Roll a 6 to bring pawns into play. Landing on an opponent pawn sends it back to start. First to bring all 4 pawns home wins.'
     },
-    coverImage: '/games/mensch-game.jpg',
+    coverImage: '/games/mensch-game.svg',
     images: [
-      '/games/mensch-game.jpg'
+      '/games/mensch-game.svg'
     ],
     designers: [
       {
@@ -75,9 +75,9 @@ export const INITIAL_GAMES: BoardGame[] = [
       fa: 'هر نوبت یک راوی دارد. توصیف راوی نباید خیلی واضح یا خیلی گنگ باشد، زیرا اگر همه یا هیچ‌کس درست حدس نزنند، راوی امتیازی نمی‌گیرد!',
       en: 'The storyteller gives a clue. Clues must be balanced—if everyone or no one guesses correctly, the storyteller gets 0 points.'
     },
-    coverImage: '/games/stojoit-game.jpg',
+    coverImage: '/games/stojoit-game.svg',
     images: [
-      '/games/stojoit-game.jpg'
+      '/games/stojoit-game.svg'
     ],
     designers: [
       {
@@ -134,9 +134,9 @@ export const INITIAL_GAMES: BoardGame[] = [
       fa: 'در هر نوبت می‌توانید یکی از نوبت‌های استاندارد (سکه‌گیری، کودتا) یا قابلیت یکی از شخصیت‌ها (شاهزاده، قاتل، فرمانده، سفیر، کنتس) را ادعا کنید. حریفان می‌توانند شما را چالش بکشند یا دفاع کنند. اگر بلوف بزنید و لو بروید، یکی از کارت‌های خود را از دست می‌دهید.',
       en: 'On your turn, you can take standard actions or claim character abilities (Duke, Assassin, Captain, Ambassador, Contessa). Opponents can challenge your claims or block actions. Losing a challenge costs one of your influence cards.'
     },
-    coverImage: '/games/coup-iranian-ver.jpg',
+    coverImage: '/games/coup-iranian-ver.svg',
     images: [
-      '/games/coup-iranian-ver.jpg'
+      '/games/coup-iranian-ver.svg'
     ],
     designers: [
       {
@@ -198,9 +198,9 @@ export const INITIAL_GAMES: BoardGame[] = [
       fa: 'هر بازیکن در نوبت خود اکشن‌های اکتشاف اتاق‌ها، خواندن طلسم، بستن درها و پاکسازی روح را انجام می‌دهد. کاشی‌های خانه به شکل تصادفی چیده شده و هر بازی تجربه‌ای کاملاً جدید ایجاد می‌کند.',
       en: 'Players explore room tiles, cast cleansing spells, lock doors, and exorcise spirits. Randomly generated layout ensures high replayability.'
     },
-    coverImage: '/games/zar-game.jpg',
+    coverImage: '/games/zar-game.svg',
     images: [
-      '/games/zar-game.jpg'
+      '/games/zar-game.svg'
     ],
     designers: [
       {
@@ -255,9 +255,9 @@ export const INITIAL_GAMES: BoardGame[] = [
       fa: 'وزیر با فرمان شاه به چهره‌ها نگاه کرده و دزد را حدس می‌زند. اگر اشتباه بگوبد مجازات می‌شود و اگر درست بگوید دزد جریمه می‌گردد.',
       en: 'The King orders the Minister to find the Thief. Incorrect guesses penalize the Minister; correct guesses penalize the Thief.'
     },
-    coverImage: '/games/shah-thief-minister.jpg',
+    coverImage: '/games/shah-thief-minister.svg',
     images: [
-      '/games/shah-thief-minister.jpg'
+      '/games/shah-thief-minister.svg'
     ],
     designers: [
       {
@@ -305,9 +305,9 @@ export const INITIAL_GAMES: BoardGame[] = [
       fa: 'تاس بریزید، منابع بگیرید، تجارت کنید، جاده و خانه بسازید و از دزد محافظت کنید.',
       en: 'Roll dice, collect tiles, trade with players or bank, build roads & settlements, manage the robber.'
     },
-    coverImage: '/games/catan-settlers.jpg',
+    coverImage: '/games/catan-settlers.svg',
     images: [
-      '/games/catan-settlers.jpg'
+      '/games/catan-settlers.svg'
     ],
     designers: [
       {
@@ -363,9 +363,9 @@ export const INITIAL_GAMES: BoardGame[] = [
       fa: 'در هر نوبت یا ۳ توکن گوهر مختلف بردارید، یا ۲ توکن هم‌رنگ، یا یک کارت رزرو کنید، یا یک کارت بخرید.',
       en: 'Take 3 different gems, take 2 same gems, reserve a card with gold, or purchase a development card.'
     },
-    coverImage: '/games/splendor-game.jpg',
+    coverImage: '/games/splendor-game.svg',
     images: [
-      '/games/splendor-game.jpg'
+      '/games/splendor-game.svg'
     ],
     designers: [
       {
@@ -414,9 +414,9 @@ export const INITIAL_GAMES: BoardGame[] = [
       fa: 'مهره‌ها را به سمت خانه خود حرکت دهید. اگر مهره تک حریف در خانه‌ای باشد می‌توانید آن را زده و به بیرون بفرستید. بازیکنی که زودتر تمام ۱۵ مهره را خارج کند برنده است.',
       en: 'Move checkers to home board according to dice values. Hit single opponent checkers to send them to the bar. First to bear off all 15 checkers wins.'
     },
-    coverImage: '/games/backgammon-game.jpg',
+    coverImage: '/games/backgammon-game.svg',
     images: [
-      '/games/backgammon-game.jpg'
+      '/games/backgammon-game.svg'
     ],
     designers: [
       {
@@ -470,9 +470,9 @@ export const INITIAL_GAMES: BoardGame[] = [
       fa: 'هر مهره الگوی حرکت خاص خود را دارد. نوبت‌ها متناوب است. اگر شاه حریف زیر حمله باشد و راه فراری نداشته باشد کیش و مات رخ داده است.',
       en: 'Pieces move in specific patterns. Alternating turns. Game ends when a King is threatened and cannot escape (Checkmate).'
     },
-    coverImage: '/games/chess-game.jpg',
+    coverImage: '/games/chess-game.svg',
     images: [
-      '/games/chess-game.jpg'
+      '/games/chess-game.svg'
     ],
     designers: [
       {
@@ -527,9 +527,9 @@ export const INITIAL_GAMES: BoardGame[] = [
       fa: 'در هر نوبت کارت بکشید، کمبوهای ۳ تایی یا ۵ تایی بسازید، یا با کارت‌های طلسم به مجموعه حریفان حمله کنید.',
       en: 'Draw cards, complete set combinations of 3 or 5 matched symbols, or cast spell cards to disrupt opponents.'
     },
-    coverImage: '/games/haunted-forest.jpg',
+    coverImage: '/games/haunted-forest.svg',
     images: [
-      '/games/haunted-forest.jpg'
+      '/games/haunted-forest.svg'
     ],
     designers: [
       {
@@ -577,9 +577,9 @@ export const INITIAL_GAMES: BoardGame[] = [
       fa: 'سرتیم یک رمز (مثلاً «دریا: ۲») می‌گوید. تیم باید کلمات مربوط به رمز را حدس بزند. اشتباه حدس زدن نوبت را تمام می‌کند.',
       en: 'Spymaster gives a single-word clue + number. Team guesses cards. Hitting enemy color ends turn; hitting assassin loses instantly.'
     },
-    coverImage: '/games/codenames-game.jpg',
+    coverImage: '/games/codenames-game.svg',
     images: [
-      '/games/codenames-game.jpg'
+      '/games/codenames-game.svg'
     ],
     designers: [
       {
@@ -634,9 +634,9 @@ export const INITIAL_GAMES: BoardGame[] = [
       fa: 'محصول بکرید، از بازار کارت رو کنید و حتماً با دیگران معامله کنید. محصول کامل‌شده را بفروشید و سکه بگیرید.',
       en: 'Plant mandatory cards, reveal market cards, negotiate trades, harvest fields for gold coins.'
     },
-    coverImage: '/games/jaliz-game.jpg',
+    coverImage: '/games/jaliz-game.svg',
     images: [
-      '/games/jaliz-game.jpg'
+      '/games/jaliz-game.svg'
     ],
     designers: [
       {
@@ -690,9 +690,9 @@ export const INITIAL_GAMES: BoardGame[] = [
       fa: 'شب‌ها نقش‌ها اکشن خود را انجام می‌دهند. روزها اتهام‌زنی، دفاع کلامی و رای‌گیری برای خروج متهم انجام می‌پذیرد.',
       en: 'Night actions take place in secrecy. Day discussions involve arguments, defenses, and vote-offs.'
     },
-    coverImage: '/games/mafia-nights.jpg',
+    coverImage: '/games/mafia-nights.svg',
     images: [
-      '/games/mafia-nights.jpg'
+      '/games/mafia-nights.svg'
     ],
     designers: [
       {
@@ -746,9 +746,9 @@ export const INITIAL_GAMES: BoardGame[] = [
       fa: 'از کارگاه‌ها کاشی‌های یک‌رنگ بردارید، در ردیف‌های دیوار بچینید. کاشی‌های اضافه منفی می‌خورند!',
       en: 'Draft matching tiles from market disks, fill wall pattern lines, score completed rows without overflowing into penalty spots.'
     },
-    coverImage: '/games/azul-game.jpg',
+    coverImage: '/games/azul-game.svg',
     images: [
-      '/games/azul-game.jpg'
+      '/games/azul-game.svg'
     ],
     designers: [
       {
@@ -797,9 +797,9 @@ export const INITIAL_GAMES: BoardGame[] = [
       fa: 'کارت نقش انتخاب کنید، طلا یا کارت سازه بگیرید، از قابلیت نقش استفاده کرده و شهر خود را توسعه دهید.',
       en: 'Draft character role, collect gold or draw district cards, use role action, build district structures.'
     },
-    coverImage: '/games/citadels-game.jpg',
+    coverImage: '/games/citadels-game.svg',
     images: [
-      '/games/citadels-game.jpg'
+      '/games/citadels-game.svg'
     ],
     designers: [
       {
@@ -865,7 +865,7 @@ export const INITIAL_COMMENTS: UserComment[] = [
 ];
 
 // LocalStorage Persistence Helpers
-const GAMES_STORAGE_KEY = 'bg_portal_games_v5';
+const GAMES_STORAGE_KEY = 'bg_portal_games_v6';
 const COMMENTS_STORAGE_KEY = 'bg_portal_comments_v1';
 
 export function getGames(): BoardGame[] {
