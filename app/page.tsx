@@ -87,7 +87,7 @@ export default function HomePage() {
               {/* Quick Stats Grid */}
               <div className="grid grid-cols-3 gap-4 pt-8 border-t border-slate-800/80 max-w-lg mx-auto lg:mx-0">
                 <div>
-                  <span className="block text-2xl font-black text-amber-400">۱۶+</span>
+                  <span className="block text-2xl font-black text-amber-400">۲۰</span>
                   <span className="text-xs text-slate-400">{isFa ? 'بازی فکری ثبت‌شده' : 'Mind Games Reviewed'}</span>
                 </div>
                 <div>

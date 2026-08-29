@@ -831,9 +831,263 @@ export const INITIAL_GAMES: BoardGame[] = [
     ],
     availableInIran: true,
     bggUrl: 'https://boardgamegeek.com/boardgame/478/citadels'
+  },
+  {
+    id: 'speed-cups',
+    title: { fa: 'کاپچین (Speed Cups)', en: 'Speed Cups (Capchain)' },
+    subtitle: { fa: 'بازی فکری سرعت عمل، تمرکز دیداری و تطبیق رنگ‌ها', en: 'Fast Action Cup Stacking & Reaction Speed Game' },
+    shortDescription: {
+      fa: 'محبوب‌ترین بازی فکری چالش سرعت عمل ایرانی نشر هوپا. ترکیب چیدن ۵ لیوان رنگی بر اساس کارت‌های چالش و زدن زنگ سرعت.',
+      en: 'High-speed card matching and cup stacking game for 2-4 players. Match card colors fast and ring the bell first!'
+    },
+    fullDescription: {
+      fa: 'در بازی فکری کاپچین، هر بازیکن یک ست ۵ تایی از لیوان‌های رنگی (آبی، قرمز، سبز، زرد، مشکی) دارد. با رو شدن هر کارت چالش، بازیکنان باید با سرعتی باورنکردنی ترتیب رنگ‌های تصویر (افقی یا عمودی) را روی لیوان‌های خود پیاده کرده و زنگ فلزی را به صدا درآورند.',
+      en: 'In Speed Cups, players race to arrange 5 colored cups in the exact order shown on the challenge card.'
+    },
+    rulesOverview: {
+      fa: 'کارت رو کنید، لیوان‌ها را بر اساس افقی یا عمودی بودن الگوی کارت سریع بچینید و زنگ را بزنید.',
+      en: 'Flip card, arrange cups horizontally or stacked vertically to match the card, ring the bell first.'
+    },
+    coverImage: '/games/speed-cups.svg',
+    images: [
+      '/games/speed-cups.svg'
+    ],
+    designers: [
+      {
+        name: { fa: 'هایم شافر (بازطراحی هوپا)', en: 'Haim Shafir (Hoopa Games)' },
+        country: { fa: 'بازطراحی نشر هوپا', en: 'Adapted by Hoopa Games' }
+      }
+    ],
+    publisher: { fa: 'نشر بازی‌های فکری هوپا (Hoopa)', en: 'Hoopa Games' },
+    releaseYear: 2013,
+    origin: 'iranian',
+    minPlayers: 2,
+    maxPlayers: 4,
+    bestPlayerCount: 4,
+    playingTimeMinutes: 15,
+    minAge: 6,
+    complexity: 1.1,
+    rating: 9.1,
+    categories: [
+      { fa: 'بازی فکری سرعت عمل', en: 'Speed & Reaction' },
+      { fa: 'تمرکز دیداری', en: 'Visual Perception' }
+    ],
+    skills: [
+      {
+        key: 'decision_making',
+        title: { fa: 'پردازش سریع اطلاعات دیداری و هماهنگی چشم و دست', en: 'Visual Processing & Hand-Eye Speed' },
+        score: 9.5,
+        description: { fa: 'تقویت حافظه دیداری آنی و عکس‌العمل سریع حرکتی تحت فشار زمان.', en: 'Enhances instantaneous visual memory and rapid reaction times.' }
+      }
+    ],
+    availableInIran: true,
+    bggUrl: 'https://boardgamegeek.com/boardgame/141572/speed-cups'
+  },
+  {
+    id: 'ticket-to-ride',
+    title: { fa: 'بلیت سفر (Ticket to Ride)', en: 'Ticket to Ride' },
+    subtitle: { fa: 'بازی فکری استراتژیک احداث خطوط راه‌آهن و اتصال شهرها', en: 'Cross-Country Train Route Strategy Game' },
+    shortDescription: {
+      fa: 'شاهکار بین‌المللی دنیای بازی‌های فکری رومیزی. جمع‌آوری کارت‌های قطار، اتصال مسیرهای ریلی و تکمیل بلیت‌های هدف.',
+      en: 'The classic train adventure board game where players collect train cards to claim railway routes connecting cities.'
+    },
+    fullDescription: {
+      fa: 'در بازی فکری بلیت سفر، بازیکنان در نقش سرمایه‌گذاران راه‌آهن تلاش می‌کنند تا شبکه‌ای از مسیرهای قطار را بین شهرهای مختلف تاسیس کنند. هرچه مسیرها طولانی‌تر و بلیت‌های مقصد تکمیل‌شده بیشتر باشند، امتیاز نهایی بالاتر خواهد بود.',
+      en: 'Ticket to Ride is a cross-country train adventure where players collect cards of various types of train cars that enable them to claim railway routes.'
+    },
+    rulesOverview: {
+      fa: 'در هر نوبت: کارت قطار بکشید، یا مسیر ریلی بین دو شهر را با قطارهای خود تصاحب کنید، یا بلیت مقصد جدید دریافت کنید.',
+      en: 'On turn: draw train cards, claim a route between cities using train cards, or draw new destination tickets.'
+    },
+    coverImage: '/games/ticket-to-ride.svg',
+    images: [
+      '/games/ticket-to-ride.svg'
+    ],
+    designers: [
+      {
+        name: { fa: 'آلن آر. مون', en: 'Alan R. Moon' },
+        country: { fa: 'بریتانیا / آمریکا', en: 'UK / USA' }
+      }
+    ],
+    publisher: { fa: 'Days of Wonder (بین‌المللی)', en: 'Days of Wonder' },
+    releaseYear: 2004,
+    origin: 'international',
+    minPlayers: 2,
+    maxPlayers: 5,
+    bestPlayerCount: 4,
+    playingTimeMinutes: 45,
+    minAge: 8,
+    complexity: 1.8,
+    rating: 9.4,
+    categories: [
+      { fa: 'بازی فکری استراتژیک', en: 'Strategic Board Game' },
+      { fa: 'شبکه‌سازی و مسیر یابی', en: 'Network & Route Building' }
+    ],
+    skills: [
+      {
+        key: 'strategic_thinking',
+        title: { fa: 'برنامه‌ریزی فضایی و مدیریت مسیرهای جایگزین', en: 'Spatial Planning & Route Backup' },
+        score: 9.3,
+        description: { fa: 'پیش‌بینی مسدود شدن مسیرها توسط حریفان و طراحی راه‌های جایگزین.', en: 'Anticipating route blockades and designing redundant rail networks.' }
+      }
+    ],
+    availableInIran: true,
+    bggUrl: 'https://boardgamegeek.com/boardgame/9209/ticket-to-ride'
+  },
+  {
+    id: 'century-spice-road',
+    title: { fa: 'کهربا: جاده ادویه (Century: Spice Road)', en: 'Century: Spice Road' },
+    subtitle: { fa: 'بازی فکری تجارت، ترکیب کارت‌ها و مدیریت منابع ادویه', en: 'Trading, Engine Building & Spice Merchant Game' },
+    shortDescription: {
+      fa: 'یکی از جذاب‌ترین بازی‌های فکری مدیریت منابع و تجارت. برداشت، ارتقا و مبادله ۴ ادویه باارزش برای کسب امتیاز.',
+      en: 'An engine-building card game where players act as spice merchants, trading turmeric, saffron, cardamom and cinnamon.'
+    },
+    fullDescription: {
+      fa: 'در بازی فکری کهربا، شما رهبر کاروان ادویه‌جات در جاده تاریخی ابریشم هستید. با بازی کردن کارت‌های دست خود، ادویه‌های زرد، قرمز، سبز و قهوه‌ای به دست آورده، آن‌ها را به ادویه‌های گران‌بها ارتقا داده و کارت‌های امتیاز را خریداری می‌کنید.',
+      en: 'Century: Spice Road explores the history of the spice trade with players leading caravans to collect and trade spices.'
+    },
+    rulesOverview: {
+      fa: 'کارت جدید بردارید، یا کارت بازی کنید (تولید/مبادله ادویه)، یا کارت امتیاز بخرید، یا کارت‌های بازی‌شده را استراحت داده و برگردانید.',
+      en: 'Play card to produce/trade spices, acquire merchant card, claim points card, or rest to return cards to hand.'
+    },
+    coverImage: '/games/century-spice-road.svg',
+    images: [
+      '/games/century-spice-road.svg'
+    ],
+    designers: [
+      {
+        name: { fa: 'امرسون ماتسوئوچی', en: 'Emerson Matsuuchi' },
+        country: { fa: 'آمریکا / بازطراحی رومیز', en: 'USA / Roomiz Games' }
+      }
+    ],
+    publisher: { fa: 'Plan B Games / رومیز', en: 'Plan B Games / Roomiz' },
+    releaseYear: 2017,
+    origin: 'international',
+    minPlayers: 2,
+    maxPlayers: 5,
+    bestPlayerCount: 3,
+    playingTimeMinutes: 35,
+    minAge: 8,
+    complexity: 1.7,
+    rating: 9.2,
+    categories: [
+      { fa: 'بازی فکری مدیریت منابع', en: 'Resource Management' },
+      { fa: 'مبادله و موتور سازی', en: 'Engine Building & Trading' }
+    ],
+    skills: [
+      {
+        key: 'resource_management',
+        title: { fa: 'بهینه‌سازی زنجیره تولید و ارتقای منابع', en: 'Resource Chain Optimization' },
+        score: 9.4,
+        description: { fa: 'طراحی کمترین تعداد حرکت برای تبدیل ادویه‌های پایه به بیشترین امتیاز ممکن.', en: 'Optimizing turn efficiency to convert basic spices into maximum victory points.' }
+      }
+    ],
+    availableInIran: true,
+    bggUrl: 'https://boardgamegeek.com/boardgame/209685/century-spice-road'
+  },
+  {
+    id: 'seven-wonders',
+    title: { fa: 'عجایب هفتگانه (7 Wonders)', en: '7 Wonders' },
+    subtitle: { fa: 'بازی فکری تمدن‌سازی، دست‌به‌دست کردن کارت‌ها و ساخت عجایب جهان', en: 'Civilization Drafting & Ancient Wonders Board Game' },
+    shortDescription: {
+      fa: 'پرافتخارترین بازی فکری تمدن‌سازی جهان. انتخاب کارت، توسعه علم، قدرت نظامی، تجارت و ساخت بنای عجیب تمدن.',
+      en: 'Lead one of the 7 great cities of the Ancient World. Draft cards, build structures, advance science and military power.'
+    },
+    fullDescription: {
+      fa: 'در بازی فکری 7 Wonders، شما رهبر یکی از ۷ شهر بزرگ باستانی جهان (مانند اسکندریه، جیزه، رودس) هستید. در طول ۳ عصر تاریخی، کارت‌های دست خود را چرخشی انتخاب کرده و تمدن خود را در زمینه‌های نظامی، علمی، تجاری و معماری توسعه می‌دهید.',
+      en: 'You are the leader of one of the 7 great cities of the Ancient World. Gather resources, develop commercial routes, and affirm your military supremacy.'
+    },
+    rulesOverview: {
+      fa: 'از دست کارت‌های دریافت شده ۱ کارت انتخاب و بازی کنید، مابقی کارت‌ها را به بازیکن کناری پاس دهید (Card Drafting).',
+      en: 'Draft 1 card from hand to build structure or Wonder stage, then pass remaining cards to neighboring player.'
+    },
+    coverImage: '/games/seven-wonders.svg',
+    images: [
+      '/games/seven-wonders.svg'
+    ],
+    designers: [
+      {
+        name: { fa: 'آنطوان باوزا', en: 'Antoine Bauza' },
+        country: { fa: 'فرانسه', en: 'France' }
+      }
+    ],
+    publisher: { fa: 'Repos Production (بین‌المللی)', en: 'Repos Production' },
+    releaseYear: 2010,
+    origin: 'international',
+    minPlayers: 2,
+    maxPlayers: 7,
+    bestPlayerCount: 4,
+    playingTimeMinutes: 30,
+    minAge: 10,
+    complexity: 2.3,
+    rating: 9.6,
+    categories: [
+      { fa: 'بازی فکری تمدن‌سازی', en: 'Civilization Game' },
+      { fa: 'انتخاب چرخشی کارت‌ها', en: 'Card Drafting' }
+    ],
+    skills: [
+      {
+        key: 'strategic_thinking',
+        title: { fa: 'تفکر استراتژیک چند بعدی و تعادل توسعه', en: 'Multi-Dimensional Strategy & Balance' },
+        score: 9.6,
+        description: { fa: 'ایجاد تعادل هوشمندانه میان قدرت نظامی، پیشرفت علمی و تجارت در هر عصر.', en: 'Balancing military preparedness, scientific progress, and resource building across eras.' }
+      }
+    ],
+    availableInIran: true,
+    bggUrl: 'https://boardgamegeek.com/boardgame/68448/7-wonders'
+  },
+  {
+    id: 'zirkhaki-game',
+    title: { fa: 'زیرخاکی (Zirkhaki)', en: "Zirkhaki (Dead Man's Draw)" },
+    subtitle: { fa: 'بازی فکری ریسک‌پذیری، عتیقه‌یابی و چالش شانس‌کاری', en: 'A Thrilling Push-Your-Luck Antique Treasure Card Game' },
+    shortDescription: {
+      fa: 'پرهیجان‌ترین بازی فکری ریسک‌پذیری ایرانی نشر رومیز. رو کردن کارت‌های عتیقه، کسب گنجینه و مدیریت هیجان سوختن!',
+      en: 'A fast-paced Iranian push-your-luck card game for 2-4 players. Draw treasure cards continuously until you stop or bust!'
+    },
+    fullDescription: {
+      fa: 'در بازی فکری زیرخاکی، بازیکنان جویندگان عتیقه‌جات و زیرخاکی‌های گران‌بها هستند. در نوبت خود می‌توانید کارت‌های عتیقه (با ۱۰ نوع قابلیت مختلف) را یکی‌یکی رو کنید. اگر کارت تکراری رو کنید، تمام عتیقه‌های آن نوبت شما می‌سوزد! توانایی کنترل طمع و ریسک‌پذیری کلید پیروزی است.',
+      en: 'In Zirkhaki, players draw treasure cards one by one. Each card type has a special ability. Draw as many as you dare, but drawing a duplicate suit loses everything drawn that turn!'
+    },
+    rulesOverview: {
+      fa: 'کارت رو کنید و از قابلیت آن استفاده کنید؛ تا زمانی که بخواهید ادامه دهید یا با رو کردن کارت تکراری بسوزید!',
+      en: 'Draw cards one by one, use card ability, stop to keep all drawn cards or bust if duplicate suit appears.'
+    },
+    coverImage: '/games/zirkhaki-game.svg',
+    images: [
+      '/games/zirkhaki-game.svg'
+    ],
+    designers: [
+      {
+        name: { fa: 'بازطراحی استودیو رومیز', en: 'Roomiz Games' },
+        country: { fa: 'ایران', en: 'Iran' }
+      }
+    ],
+    publisher: { fa: 'نشر رومیز / دورهمی', en: 'Roomiz Games' },
+    releaseYear: 2019,
+    origin: 'iranian',
+    minPlayers: 2,
+    maxPlayers: 4,
+    bestPlayerCount: 4,
+    playingTimeMinutes: 20,
+    minAge: 8,
+    complexity: 1.2,
+    rating: 9.3,
+    categories: [
+      { fa: 'بازی فکری ریسک‌پذیری', en: 'Push Your Luck' },
+      { fa: 'گنج‌یابی و هیجان', en: 'Treasure Hunting' }
+    ],
+    skills: [
+      {
+        key: 'decision_making',
+        title: { fa: 'مدیریت طمع، ارزیابی احتمالات و ریسک‌پذیری', en: 'Greed Control & Probability Assessment' },
+        score: 9.4,
+        description: { fa: 'سنجش دقیق نسبت سود به خطر قبل از کشیدن هر کارت جدید.', en: 'Calculating risk-to-reward ratio before drawing additional cards under pressure.' }
+      }
+    ],
+    availableInIran: true,
+    bggUrl: 'https://boardgamegeek.com/boardgame/149155/dead-mans-draw'
   }
 ];
-
 export const INITIAL_COMMENTS: UserComment[] = [
   {
     id: 'c1',
@@ -865,7 +1119,7 @@ export const INITIAL_COMMENTS: UserComment[] = [
 ];
 
 // LocalStorage Persistence Helpers
-const GAMES_STORAGE_KEY = 'bg_portal_games_v6';
+const GAMES_STORAGE_KEY = 'bg_portal_games_v7';
 const COMMENTS_STORAGE_KEY = 'bg_portal_comments_v1';
 
 export function getGames(): BoardGame[] {

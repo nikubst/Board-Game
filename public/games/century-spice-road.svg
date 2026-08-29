@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#78350f"/>
+      <stop offset="50%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Sacks of Spices -->
+  <g transform="translate(400, 240)" filter="url(#shadow)">
+    <!-- Yellow Turmeric Bowl -->
+    <circle cx="-140" cy="10" r="50" fill="#eab308" stroke="#fef08a" stroke-width="4"/>
+    <text x="-140" y="25" font-family="sans-serif" font-size="36" text-anchor="middle">🌾</text>
+
+    <!-- Red Saffron Bowl -->
+    <circle cx="-40" cy="-40" r="55" fill="#dc2626" stroke="#fca5a5" stroke-width="4"/>
+    <text x="-40" y="-25" font-family="sans-serif" font-size="38" text-anchor="middle">🌶️</text>
+
+    <!-- Green Cardamom Bowl -->
+    <circle cx="60" cy="-40" r="55" fill="#16a34a" stroke="#86efac" stroke-width="4"/>
+    <text x="60" y="-25" font-family="sans-serif" font-size="38" text-anchor="middle">🍃</text>
+
+    <!-- Brown Cinnamon Bowl -->
+    <circle cx="150" cy="10" r="50" fill="#78350f" stroke="#fde68a" stroke-width="4"/>
+    <text x="150" y="25" font-family="sans-serif" font-size="36" text-anchor="middle">📜</text>
+  </g>
+
+  <!-- Title Overlay -->
+  <rect x="0" y="490" width="800" height="110" fill="rgba(15, 23, 42, 0.88)"/>
+  <text x="400" y="540" font-family="Tahoma, sans-serif" font-size="32" font-weight="bold" fill="#fef08a" text-anchor="middle">کهربا: جاده ادویه (Century: Spice Road)</text>
+  <text x="400" y="575" font-family="sans-serif" font-size="18" fill="#fde68a" text-anchor="middle">تجارت کاروانی ادویه‌جات و ترکیب کارتی مدیریت منابع</text>
+</svg>
