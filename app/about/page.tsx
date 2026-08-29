@@ -33,7 +33,7 @@ export default function AboutPage() {
             <Dices className="w-8 h-8" />
           </div>
           <h1 className="text-3xl sm:text-5xl font-black text-slate-100">
-            {isFa ? 'درباره مرجع بازی‌های رومیزی' : 'About BoardGame Arena'}
+            {isFa ? 'درباره تاس و مهره (TasoMohreh)' : 'About TasoMohreh'}
           </h1>
           <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
             {isFa

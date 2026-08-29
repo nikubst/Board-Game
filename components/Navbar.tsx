@@ -36,10 +36,10 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang }) => {
             </div>
             <div>
               <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-amber-200 via-orange-300 to-amber-400 bg-clip-text text-transparent">
-                {isFa ? 'مرجع بازی‌های فکری و رومیزی' : 'Mind & Board Games Hub'}
+                {isFa ? 'تاس و مهره (TasoMohreh)' : 'TasoMohreh Hub'}
               </span>
               <span className="block text-xs text-amber-500/70 font-medium">
-                {isFa ? 'تحلیل مهارت، هوش و استراتژی' : 'Iranian & Global Mind Games'}
+                {isFa ? 'مرجع تخصصی بازی‌های فکری و رومیزی' : 'Mind & Board Games Reference'}
               </span>
             </div>
           </Link>

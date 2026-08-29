@@ -24,7 +24,7 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
                 <Dices className="w-6 h-6 text-amber-400" />
               </div>
               <span className="text-lg font-bold text-white">
-                {isFa ? 'مرجع بازی‌های رومیزی' : 'BoardGame Arena'}
+                {isFa ? 'تاس و مهره (TasoMohreh)' : 'TasoMohreh Hub'}
               </span>
             </div>
             <p className="text-sm leading-relaxed text-slate-400">
@@ -91,13 +91,13 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
             </p>
             <div className="flex items-center gap-2 pt-2">
               <Mail className="w-4 h-4 text-amber-400" />
-              <span className="text-xs text-slate-300">info@boardgame-arena.ir</span>
+              <span className="text-xs text-slate-300">info@tasomohreh.ir</span>
             </div>
           </div>
         </div>
 
         <div className="border-t border-slate-800/80 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400">
-          <p>© {new Date().getFullYear()} BoardGame Arena. {isFa ? 'تمامی حقوق محفوظ است.' : 'All rights reserved.'}</p>
+          <p>© {new Date().getFullYear()} تاس و مهره (TasoMohreh). {isFa ? 'تمامی حقوق محفوظ است.' : 'All rights reserved.'}</p>
           <div className="flex items-center gap-2 mt-4 sm:mt-0 text-slate-400">
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
             <span>{isFa ? 'حامی طراحان مستقل بازی‌های رومیزی ایرانی' : 'Supporting Independent Iranian Game Designers'}</span>
